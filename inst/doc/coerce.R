@@ -8,87 +8,79 @@ knitr::include_graphics("fig1.png")
 knitr::include_graphics("fig2_p7_RRASTER_GRASS.png")
 
 ## -----------------------------------------------------------------------------
-run <- require("terra", quietly=TRUE)
+terra_available <- require("terra", quietly=TRUE)
+sf_available <- require("sf", quietly=TRUE)
+Sys.setenv("_SP_EVOLUTION_STATUS_"="2")
+sp_available <- require("sp", quietly=TRUE)
+stars_available <- require("stars", quietly=TRUE)
+raster_available <- require("raster", quietly=TRUE)
 
-## ---- eval=run----------------------------------------------------------------
+## ---- eval=terra_available----------------------------------------------------
 gdal(lib="all")
 
-## -----------------------------------------------------------------------------
+## ---- eval=terra_available----------------------------------------------------
 fv <- system.file("ex/lux.shp", package="terra")
 (v <- vect(fv))
 
-## ---- eval=run----------------------------------------------------------------
+## ---- , eval=terra_available--------------------------------------------------
 try(inMemory(v))
 
-## ---- eval=run----------------------------------------------------------------
+## ---- , eval=terra_available--------------------------------------------------
 cat(crs(v), "\n")
 
-## ---- eval=run----------------------------------------------------------------
-no_sf <- inherits(try(require("sf")), "try-error")
-
-## ---- eval=(run && !no_sf)----------------------------------------------------
+## ---- eval=(terra_available && sf_available)----------------------------------
 v_sf <- st_as_sf(v)
 v_sf
 
-## ---- eval=(run && !no_sf)----------------------------------------------------
+## ---- eval=(terra_available && sf_available)----------------------------------
 v_sf_rt <- vect(v_sf)
 v_sf_rt
 
-## ---- eval=(run && !no_sf)----------------------------------------------------
+## ---- eval=(terra_available && sf_available)----------------------------------
 all.equal(v_sf_rt, v, check.attributes=FALSE)
 
-## ---- eval=(run && !no_sf)----------------------------------------------------
-Sys.setenv("_SP_EVOLUTION_STATUS_"="2")
-no_sp <- inherits(try(require("sp", quietly=TRUE)), "try-error")
-
-## ---- eval=(run && !no_sf && !no_sp)------------------------------------------
+## ---- eval=(terra_available && sf_available && sp_available)------------------
 v_sp <- as(v_sf, "Spatial")
 print(summary(v_sp))
 
-## ---- eval=(run && !no_sf && !no_sp)------------------------------------------
+## ---- eval=(terra_available && sf_available && sp_available)------------------
 v_sp_rt <- vect(st_as_sf(v_sp))
 all.equal(v_sp_rt, v, check.attributes=FALSE)
 
-## ---- eval=run----------------------------------------------------------------
+## ---- eval=terra_available----------------------------------------------------
 fr <- system.file("ex/elev.tif", package="terra")
 (r <- rast(fr))
 
-## ---- eval=run----------------------------------------------------------------
+## ---- eval=terra_available----------------------------------------------------
 try(inMemory(r))
 
-## ---- eval=run----------------------------------------------------------------
-no_stars <- inherits(try(require("stars", quietly=TRUE)), "try-error")
-
-## ---- eval=(run && !no_stars)-------------------------------------------------
+## ---- eval=(terra_available && stars_available)-------------------------------
 r_stars <- st_as_stars(r)
 print(r_stars)
 
-## ---- eval=(run && !no_stars)-------------------------------------------------
+## ---- eval=(terra_available && stars_available)-------------------------------
 (r_stars_rt <- rast(r_stars))
 
-## ---- eval=(run && !no_stars)-------------------------------------------------
+## ---- eval=(terra_available && stars_available)-------------------------------
 (r_stars_p <- st_as_stars(r, proxy=TRUE))
 
-## ---- eval=(run && !no_stars)-------------------------------------------------
+## ---- eval=(terra_available && stars_available)-------------------------------
 (r_stars_p_rt <- rast(r_stars_p))
 
-## ---- eval=(run && !no_sp && !no_stars)---------------------------------------
+## ---- eval=(terra_available && stars_available && sp_available)---------------
 r_sp <- as(r_stars, "Spatial")
 summary(r_sp)
 
-## ---- eval=(run && !no_sp && !no_stars)---------------------------------------
+## ---- eval=(terra_available && stars_available && sp_available)---------------
 (r_sp_rt <- rast(st_as_stars(r_sp)))
 
-## ---- eval=run----------------------------------------------------------------
+## ---- eval=terra_available----------------------------------------------------
 tf <- tempfile(fileext=".grd")
 terra::writeRaster(r, filename=tf, filetype="RRASTER")
 
-## ---- eval=run----------------------------------------------------------------
-no_raster <- inherits(try(require("raster", quietly=TRUE)), "try-error")
-
-## ---- eval=(run && !no_raster)------------------------------------------------
+## ---- eval=(terra_available && raster_available)------------------------------
 (r_RL <- raster(tf))
 
-## ---- eval=(run && !no_raster)------------------------------------------------
+## ---- eval=(terra_available && raster_available)------------------------------
 (r_RL_rt <- rast(r_RL))
 

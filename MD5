@@ -1,6 +1,6 @@
-dc413eeabd7c066fd21c41b9a662ed44 *DESCRIPTION
+e5a687dfe07befe9a9cf7503954b9248 *DESCRIPTION
 d84b720221e1212314fec5ca27d87464 *NAMESPACE
-dcaf12144e5a820e5a7a39451b5fec7c *NEWS.md
+9aa5542f0c3847253998828f71c2008d *NEWS.md
 320fe3cff7670e2a1eb2cde9ddd4dc43 *R/AAA.R
 0ceac150202ccd8c3ff699dd0bbd5e7d *R/initGRASS.R
 9f7fdccfb0f936c90a9ca95834330850 *R/options.R
@@ -10,9 +10,9 @@ d5f667052301a2a38baba15085e44cc7 *R/rgrass.R
 b49b04e9c18bd5aa0633e67eb7c7431a *R/vect_link_ng.R
 9f23c2b87d9147a4e0c6ac82323094f3 *R/xml1.R
 a3214beffdc02734fcdb5125b1c6b34d *build/vignette.rds
-541c88244150812e5c8f03c9c096a38f *inst/doc/coerce.R
-996eddbc6b14a0004ea50e9aeeabf39b *inst/doc/coerce.Rmd
-58d2a9c0ec6c0609470f80a3be6977e7 *inst/doc/coerce.html
+927cfd8ec50f4f3d36637601b7ff0362 *inst/doc/coerce.R
+c62ba224328bba057df332defbdb3934 *inst/doc/coerce.Rmd
+0750b1d9116b6bdd491b4817f1aa87f5 *inst/doc/coerce.html
 ae79bbdece2ff67897932c7ef11ed18a *inst/doc/use.R
 53562a71db4d328a3988a7b39bda76f9 *inst/doc/use.Rmd
 0cca09d906c96579b80e30c83ef23757 *inst/doc/use.html
@@ -23,7 +23,7 @@ d39ff370709f84aef9aadf742f6215fb *man/gmeta.Rd
 4c221a7d9ab8b7afbe4a920561fd7218 *man/readRAST.Rd
 52e8f014acbc5b6d7b533493387f2f77 *man/readVECT.Rd
 c2dd6e149d48a9ff3d71dc75deb5d0e8 *man/rgrass.Rd
-996eddbc6b14a0004ea50e9aeeabf39b *vignettes/coerce.Rmd
+c62ba224328bba057df332defbdb3934 *vignettes/coerce.Rmd
 d5553b16ddda61d230e036a985e26b76 *vignettes/fig1.png
 11787e6609112078360a78e53994b378 *vignettes/fig2_p7_RRASTER_GRASS.png
 b0bd25f15972ac603e0d60e301a6608e *vignettes/refs.bib
