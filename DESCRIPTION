@@ -1,11 +1,12 @@
 Package: rgrass
-Version: 0.3-3
-Date: 2022-08-08
+Version: 0.3-5
+Date: 2022-09-29
 Title: Interface Between 'GRASS' Geographical Information System and
         'R'
 Authors@R: c(
 	person("Roger", "Bivand", role = c("cre", "aut"), email = "Roger.Bivand@nhh.no", comment=c(ORCID="0000-0003-2392-6140")),
 	person("Rainer", "Krug", role = "ctb", email="Rainer@krugs.de", comment=c(ORCID="0000-0002-7490-0066")),
+        person("Robin", "Lovelace", role = "ctb", comment=c(ORCID = "0000-0001-5679-6536")),
 	person("Markus", "Neteler", role = "ctb", email="neteler@osgeo.org", comment=c(ORCID="0000-0003-1916-1966")),
 	person("Sebastian", "Jeworutzki", role = "ctb", email="Sebastian.Jeworutzki@rub.de", comment=c(ORCID="0000-0002-2671-5253")),
 	person("Floris", "Vanderhaeghe", role = "ctb", email="floris.vanderhaeghe@inbo.be", comment=c(ORCID="0000-0002-6378-6229")))
@@ -23,12 +24,13 @@ BugReports: https://github.com/rsbivand/rgrass/issues/
 Collate: AAA.R options.R rgrass.R rast_link.R vect_link.R
         vect_link_ng.R initGRASS.R xml1.R
 NeedsCompilation: no
-Packaged: 2022-08-08 07:17:50 UTC; rsb
+Packaged: 2022-09-29 18:16:50 UTC; rsb
 Author: Roger Bivand [cre, aut] (<https://orcid.org/0000-0003-2392-6140>),
   Rainer Krug [ctb] (<https://orcid.org/0000-0002-7490-0066>),
+  Robin Lovelace [ctb] (<https://orcid.org/0000-0001-5679-6536>),
   Markus Neteler [ctb] (<https://orcid.org/0000-0003-1916-1966>),
   Sebastian Jeworutzki [ctb] (<https://orcid.org/0000-0002-2671-5253>),
   Floris Vanderhaeghe [ctb] (<https://orcid.org/0000-0002-6378-6229>)
 Maintainer: Roger Bivand <Roger.Bivand@nhh.no>
 Repository: CRAN
-Date/Publication: 2022-08-08 08:10:02 UTC
+Date/Publication: 2022-09-29 18:40:02 UTC

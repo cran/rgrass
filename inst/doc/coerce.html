@@ -289,9 +289,9 @@ div.tocify {
 <p>These changes mean that users transferring data between R and GRASS will need to coerce between <strong>terra</strong> classes <code>SpatVector</code> and <code>SpatRaster</code> and the class system of choice. In addition, <code>SpatRaster</code> is only read into memory from file when this is required, so requiring some care.</p>
 <p>On loading and attaching, <strong>terra</strong> displays its version:</p>
 <pre class="r"><code>terra_available &lt;- require(&quot;terra&quot;, quietly=TRUE)</code></pre>
-<pre><code>## terra 1.6.7</code></pre>
+<pre><code>## terra 1.6.24</code></pre>
 <pre class="r"><code>sf_available &lt;- require(&quot;sf&quot;, quietly=TRUE)</code></pre>
-<pre><code>## Linking to GEOS 3.11.0, GDAL 3.5.1, PROJ 9.0.1; sf_use_s2() is TRUE</code></pre>
+<pre><code>## Linking to GEOS 3.11.0, GDAL 3.5.2, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
 <pre class="r"><code>Sys.setenv(&quot;_SP_EVOLUTION_STATUS_&quot;=&quot;2&quot;)
 sp_available &lt;- require(&quot;sp&quot;, quietly=TRUE)
 stars_available &lt;- require(&quot;stars&quot;, quietly=TRUE)
@@ -299,7 +299,7 @@ raster_available &lt;- require(&quot;raster&quot;, quietly=TRUE)</code></pre>
 <p>This description is constructed conditioning on the availability of suggested packages. <code>terra::gdal()</code> tells us the versions of the external libraries being used by <strong>terra</strong>:</p>
 <pre class="r"><code>gdal(lib=&quot;all&quot;)</code></pre>
 <pre><code>##     gdal     proj     geos 
-##  &quot;3.5.1&quot;  &quot;9.0.1&quot; &quot;3.11.0&quot;</code></pre>
+##  &quot;3.5.2&quot;  &quot;9.1.0&quot; &quot;3.11.0&quot;</code></pre>
 <p>When using CRAN binary packages built static for Windows and macOS, the R packages will use the same versions of the external libraries, but not necessarily the same versions as those against which GRASS was installed.</p>
 </div>
 <div id="spatvector-coercion" class="section level2">
@@ -446,9 +446,9 @@ print(r_stars)</code></pre>
 ##           Min. 1st Qu. Median     Mean 3rd Qu. Max. NA&#39;s
 ## elev.tif   141     291    333 348.3366     406  547 3942
 ## dimension(s):
-##   from to  offset       delta refsys point values x/y
-## x    1 95 5.74167  0.00833333 WGS 84 FALSE   NULL [x]
-## y    1 90 50.1917 -0.00833333 WGS 84 FALSE   NULL [y]</code></pre>
+##   from to  offset       delta refsys point x/y
+## x    1 95 5.74167  0.00833333 WGS 84 FALSE [x]
+## y    1 90 50.1917 -0.00833333 WGS 84 FALSE [y]</code></pre>
 <p>which round-trips in memory.</p>
 <pre class="r"><code>(r_stars_rt &lt;- rast(r_stars))</code></pre>
 <pre><code>## class       : SpatRaster 
@@ -467,9 +467,9 @@ print(r_stars)</code></pre>
 ## [1] &quot;[...]/elev.tif&quot;
 ## 
 ## dimension(s):
-##   from to  offset       delta refsys point values x/y
-## x    1 95 5.74167  0.00833333 WGS 84 FALSE   NULL [x]
-## y    1 90 50.1917 -0.00833333 WGS 84 FALSE   NULL [y]</code></pre>
+##   from to  offset       delta refsys point x/y
+## x    1 95 5.74167  0.00833333 WGS 84 FALSE [x]
+## y    1 90 50.1917 -0.00833333 WGS 84 FALSE [y]</code></pre>
 <p>with coercion from <code>&quot;stars_proxy&quot;</code> also not reading data into memory:</p>
 <pre class="r"><code>(r_stars_p_rt &lt;- rast(r_stars_p))</code></pre>
 <pre><code>## class       : SpatRaster 
@@ -531,7 +531,7 @@ terra::writeRaster(r, filename=tf, filetype=&quot;RRASTER&quot;)</code></pre>
 ## resolution : 0.008333333, 0.008333333  (x, y)
 ## extent     : 5.741667, 6.533333, 49.44167, 50.19167  (xmin, xmax, ymin, ymax)
 ## crs        : +proj=longlat +datum=WGS84 +no_defs 
-## source     : file2079d36daa058.grd 
+## source     : file28bc450ac5faf.grd 
 ## names      : elevation 
 ## values     : 0, 547  (min, max)</code></pre>
 <p>This object (held on file rather than in memory) can be round-tripped:</p>
@@ -541,7 +541,7 @@ terra::writeRaster(r, filename=tf, filetype=&quot;RRASTER&quot;)</code></pre>
 ## resolution  : 0.008333333, 0.008333333  (x, y)
 ## extent      : 5.741667, 6.533333, 49.44167, 50.19167  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
-## source      : file2079d36daa058.grd 
+## source      : file28bc450ac5faf.grd 
 ## name        : elevation 
 ## min value   :         0 
 ## max value   :       547</code></pre>
