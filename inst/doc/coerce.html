@@ -130,8 +130,8 @@ pre code {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -139,16 +139,9 @@ pre code {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -294,7 +287,7 @@ div.tocify {
 <pre><code>## Linking to GEOS 3.11.0, GDAL 3.5.2, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
 <pre class="r"><code>Sys.setenv(&quot;_SP_EVOLUTION_STATUS_&quot;=&quot;2&quot;)
 sp_available &lt;- require(&quot;sp&quot;, quietly=TRUE)
-stars_available &lt;- require(&quot;stars&quot;, quietly=TRUE)
+stars_available &lt;- require(&quot;stars&quot;, quietly=TRUE) &amp;&amp; packageVersion(&quot;stars&quot;) &gt; &quot;0.5.4&quot;
 raster_available &lt;- require(&quot;raster&quot;, quietly=TRUE)</code></pre>
 <p>This description is constructed conditioning on the availability of suggested packages. <code>terra::gdal()</code> tells us the versions of the external libraries being used by <strong>terra</strong>:</p>
 <pre class="r"><code>gdal(lib=&quot;all&quot;)</code></pre>
@@ -521,29 +514,28 @@ summary(r_sp)</code></pre>
 </div>
 <div id="rasterlayer" class="section level3">
 <h3><code>&quot;RasterLayer&quot;</code></h3>
-<p>As <strong>rgdal</strong> will retire soon, using <strong>rgdal</strong> in the <strong>raster</strong> package <span class="citation">(Hijmans 2022a)</span> is not a feasible way to coerce a <code>&quot;SpatRaster&quot;</code> object to a <code>&quot;RasterLayer&quot;</code> object.</p>
-<pre class="r"><code>tf &lt;- tempfile(fileext=&quot;.grd&quot;)
-terra::writeRaster(r, filename=tf, filetype=&quot;RRASTER&quot;)</code></pre>
-<p>We can use a temporary file in the <code>&quot;RRASTER&quot;</code> format that <code>terra::writeRaster()</code> can write using GDAL, and <code>raster::raster()</code> can read using R code rather than GDAL:</p>
-<pre class="r"><code>(r_RL &lt;- raster(tf))</code></pre>
+<p>From version 3.6-3 the <strong>raster</strong> package <span class="citation">(Hijmans 2022a)</span> uses <strong>terra</strong> for all GDAL operations. Because of this, coercing a <code>&quot;SpatRaster&quot;</code> object to a <code>&quot;RasterLayer&quot;</code> object is simple:</p>
+<pre class="r"><code>(r_RL &lt;- raster(r))</code></pre>
 <pre><code>## class      : RasterLayer 
 ## dimensions : 90, 95, 8550  (nrow, ncol, ncell)
 ## resolution : 0.008333333, 0.008333333  (x, y)
 ## extent     : 5.741667, 6.533333, 49.44167, 50.19167  (xmin, xmax, ymin, ymax)
 ## crs        : +proj=longlat +datum=WGS84 +no_defs 
-## source     : file28bc450ac5faf.grd 
+## source     : elev.tif 
 ## names      : elevation 
-## values     : 0, 547  (min, max)</code></pre>
+## values     : 141, 547  (min, max)</code></pre>
+<pre class="r"><code>inMemory(r_RL)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
 <p>This object (held on file rather than in memory) can be round-tripped:</p>
 <pre class="r"><code>(r_RL_rt &lt;- rast(r_RL))</code></pre>
 <pre><code>## class       : SpatRaster 
 ## dimensions  : 90, 95, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.008333333, 0.008333333  (x, y)
 ## extent      : 5.741667, 6.533333, 49.44167, 50.19167  (xmin, xmax, ymin, ymax)
-## coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
-## source      : file28bc450ac5faf.grd 
+## coord. ref. : lon/lat WGS 84 (EPSG:4326) 
+## source      : elev.tif 
 ## name        : elevation 
-## min value   :         0 
+## min value   :       141 
 ## max value   :       547</code></pre>
 </div>
 </div>

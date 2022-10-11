@@ -12,7 +12,7 @@ terra_available <- require("terra", quietly=TRUE)
 sf_available <- require("sf", quietly=TRUE)
 Sys.setenv("_SP_EVOLUTION_STATUS_"="2")
 sp_available <- require("sp", quietly=TRUE)
-stars_available <- require("stars", quietly=TRUE)
+stars_available <- require("stars", quietly=TRUE) && packageVersion("stars") > "0.5.4"
 raster_available <- require("raster", quietly=TRUE)
 
 ## ---- eval=terra_available----------------------------------------------------
@@ -74,12 +74,11 @@ summary(r_sp)
 ## ---- eval=(terra_available && stars_available && sp_available)---------------
 (r_sp_rt <- rast(st_as_stars(r_sp)))
 
-## ---- eval=terra_available----------------------------------------------------
-tf <- tempfile(fileext=".grd")
-terra::writeRaster(r, filename=tf, filetype="RRASTER")
+## ---- eval=(terra_available && raster_available)------------------------------
+(r_RL <- raster(r))
 
 ## ---- eval=(terra_available && raster_available)------------------------------
-(r_RL <- raster(tf))
+inMemory(r_RL)
 
 ## ---- eval=(terra_available && raster_available)------------------------------
 (r_RL_rt <- rast(r_RL))
