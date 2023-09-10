@@ -1,4 +1,10 @@
-# **rgrass** version 0.3-8 (development)
+# **rgrass** version 0.3-9 (development)
+
+- reinstate `grass-stable` https://github.com/OSGeo/grass-website/issues/357
+
+- fix #79 thanks to Adam B. Smith, use `terra::as.vector` method rather than internal slot name
+
+# **rgrass** version 0.3-8 (2023-03-17)
 
 - #73 guess `gisBase=` in `initGRASS()`
 
