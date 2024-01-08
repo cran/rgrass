@@ -54,51 +54,75 @@ parseGRASS <- function(cmd, legacyExec=NULL) {
             }
             tr <- readLines(outFile)
         }
+        tr <- paste(tr, collapse=" ")
         enc <- get("override_encoding", envir=.GRASS_CACHE)
         if (nchar(enc) > 0) {
-          if (length(grep("UTF-8", tr[1])) > 0) {
-            tr[1] <- sub("UTF-8", enc, tr[1])
-          }        
+#          if (length(grep("UTF-8", tr[1])) > 0) {
+#            tr[1] <- sub("UTF-8", enc, tr[1])
+#          }
+           tr <- try(xml2::read_xml(tr, encoding=enc))
+        } else {
+           tr <- try(xml2::read_xml(tr))
         }
-        tr <- try(xmlTreeParse(tr))
+#        tr <- try(xmlTreeParse(tr))
 	if (inherits(tr, "try-error")) stop(paste(cmd, "not parsed"))
-        tr1 <- xmlChildren(xmlRoot(tr))
+        tr1 <- xml2::xml_contents(xml2::xml_root(tr))
+#        tr1 <- xmlChildren(xmlRoot(tr))
         res <- vector(mode="list", length=9)
         names(res) <- c("cmd", "description", "keywords", "parameters", "flags",
             "pnames", "fnames", "ext", "prep")
         res$cmd <- cmd
         res$ext <- ext
         res$prep <- prep
-        res$description <- xmlValue(tr1[[1]])
-        res$keywords <- xmlValue(tr1[[2]])
-        o0 <- names(tr1)
+#        res$description <- xmlValue(tr1[[1]])
+        if (is.na(match("description", xml_name(tr1))))
+            res$description <- xml_text(tr1[[match("label", xml_name(tr1))]],
+                trim=TRUE)
+        else if (is.na(match("label", xml_name(tr1)))) 
+            res$description <- xml_text(tr1[[match("description",
+                xml_name(tr1))]], trim=TRUE)
+        else res$description <- paste0(xml_text(tr1[[match("label",
+                xml_name(tr1))]], trim=TRUE), " ", xml_text(tr1[[match(
+                "description", xml_name(tr1))]], trim=TRUE))
+#        res$keywords <- xmlValue(tr1[[2]])
+        res$keywords <- xml_text(tr1[[match("keywords", xml_name(tr1))]], trim=TRUE)
+#        o0 <- names(tr1)
+        o0 <- xml2::xml_name(tr1)
         pseq <- which(o0 == "parameter")
         np <- length(pseq)
         ps <- vector(mode="list", length=np)
         for (i in seq(along=pseq)) {
             obj <- tr1[[pseq[i]]]
-            pv <- xmlAttrs(obj)
-            pvCh <- xmlChildren(obj)
-            pv <- c(pv, xmlValue(pvCh[["description"]]))
-            default <- pvCh[["default"]]
-            if (is.null(default)) {
+            onms <- xml2::xml_name(xml2::xml_contents(obj))
+#            pv <- xmlAttrs(obj)
+            pv <- xml2::xml_attrs(obj)
+#            pvCh <- xmlChildren(obj)
+#            pv <- c(pv, xmlValue(pvCh[["description"]]))
+            pv <- c(pv, xml2::xml_text(xml2::xml_child(obj, "description"), trim=TRUE))
+#            default <- pvCh[["default"]]
+#            if (is.null(default)) {
+            if (!("default" %in% onms)) {
                 strdef <- as.character(NA)
             } else {
-                strdef <- xmlValue(pvCh[["default"]])
+                strdef <- xml2::xml_text(xml2::xml_child(obj, "default"), trim=TRUE)
                 if (length(strdef) == 0) strdef <- ""
             }
             pv <- c(pv, strdef)
-            kd <- pvCh[["keydesc"]]
-            if (is.null(kd)) {
+#            kd <- pvCh[["keydesc"]]
+#            if (is.null(kd)) {
+            if (!("keydesc" %in% onms)) {
                 nkd <- as.integer(NA)
                 strkd <- as.character(NA)
             } else {
-                kda <- xmlApply(kd, xmlValue)
+#                kda <- xmlApply(kd, xmlValue)
+                kda <- xml2::xml_child(obj, "keydesc")
+                kda <- xml2::xml_text(xml2::xml_children(kda), trim=TRUE)
                 nkd <- length(kda)
                 strkd <- paste(sapply(kda, c), collapse=",")
             }
             pv <- c(pv, nkd, strkd)
-            names(pv) <- c(names(xmlAttrs(obj)), "desc", "default",
+#            names(pv) <- c(names(xmlAttrs(obj)), "desc", "default",
+            names(pv) <- c(names(xml2::xml_attrs(obj)), "desc", "default",
                 "keydesc_count", "keydesc")
             ps[[i]] <- pv
         }
@@ -108,14 +132,18 @@ parseGRASS <- function(cmd, legacyExec=NULL) {
         fs <- vector(mode="list", length=nf)
         for (i in seq(along=fseq)) {
             obj <- tr1[[fseq[i]]]
-            fv <- xmlAttrs(obj)
+#            fv <- xmlAttrs(obj)
+            fv <- xml2::xml_attrs(obj)
 # find description, don't assume first place 101206
-            nobj <- sapply(xmlChildren(obj), xmlName)
-            di <- match("description", nobj)
-            fv <- c(fv, xmlValue(xmlChildren(obj)[[di]]))
-            suppr_req <- as.character("suppress_required" %in% nobj)
+#            nobj <- sapply(xmlChildren(obj), xmlName)
+#            di <- match("description", nobj)
+#            fv <- c(fv, xmlValue(xmlChildren(obj)[[di]]))
+            fv <- c(fv, xml2::xml_text(xml2::xml_child(obj, "description"), trim=TRUE))
+#            suppr_req <- as.character("suppress_required" %in% nobj)
+            suppr_req <- as.character(!(is.na(xml2::xml_child(obj, "suppress_required"))))
             fv <- c(fv, suppr_req)
-            names(fv) <- c(names(xmlAttrs(obj)), "desc", "suppr_req")
+#            names(fv) <- c(names(xmlAttrs(obj)), "desc", "suppr_req")
+            names(fv) <- c(names(xml2::xml_attrs(obj)), "desc", "suppr_req")
             fs[[i]] <- fv
         }
         res$flags <- fs
