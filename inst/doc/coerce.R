@@ -1,5 +1,5 @@
 ## ----setup, include=FALSE-----------------------------------------------------
-knitr::opts_chunk$set(echo = TRUE, paged.print=FALSE)
+knitr::opts_chunk$set(echo = TRUE, paged.print = FALSE)
 
 ## ----out.width=500, echo=FALSE------------------------------------------------
 knitr::include_graphics("fig1.png")
@@ -8,11 +8,11 @@ knitr::include_graphics("fig1.png")
 knitr::include_graphics("fig2_p7_RRASTER_GRASS.png")
 
 ## ----include=FALSE, message=FALSE---------------------------------------------
-terra_available <- requireNamespace("terra", quietly=TRUE)
-sf_available <- requireNamespace("sf", quietly=TRUE)
-sp_available <- requireNamespace("sp", quietly=TRUE)
-stars_available <- requireNamespace("stars", quietly=TRUE) && packageVersion("stars") > "0.5.4"
-raster_available <- requireNamespace("raster", quietly=TRUE)
+terra_available <- requireNamespace("terra", quietly = TRUE)
+sf_available <- requireNamespace("sf", quietly = TRUE)
+sp_available <- requireNamespace("sp", quietly = TRUE)
+stars_available <- requireNamespace("stars", quietly = TRUE) && packageVersion("stars") > "0.5.4"
+raster_available <- requireNamespace("raster", quietly = TRUE)
 
 ## ----eval=terra_available-----------------------------------------------------
 library("terra")
@@ -30,10 +30,10 @@ library("stars")
 library("raster")
 
 ## ----eval=terra_available-----------------------------------------------------
-gdal(lib="all")
+gdal(lib = "all")
 
 ## ----eval=terra_available-----------------------------------------------------
-fv <- system.file("ex/lux.shp", package="terra")
+fv <- system.file("ex/lux.shp", package = "terra")
 (v <- vect(fv))
 
 ## ----, eval=terra_available---------------------------------------------------
@@ -51,7 +51,7 @@ v_sf_rt <- vect(v_sf)
 v_sf_rt
 
 ## ----eval=(terra_available && sf_available)-----------------------------------
-all.equal(v_sf_rt, v, check.attributes=FALSE)
+all.equal(v_sf_rt, v, check.attributes = FALSE)
 
 ## ----eval=(terra_available && raster_available && sp_available)---------------
 v_sp <- as(v, "Spatial")
@@ -59,10 +59,10 @@ print(summary(v_sp))
 
 ## ----eval=(terra_available && sf_available && sp_available)-------------------
 v_sp_rt <- vect(st_as_sf(v_sp))
-all.equal(v_sp_rt, v, check.attributes=FALSE)
+all.equal(v_sp_rt, v, check.attributes = FALSE)
 
 ## ----eval=terra_available-----------------------------------------------------
-fr <- system.file("ex/elev.tif", package="terra")
+fr <- system.file("ex/elev.tif", package = "terra")
 (r <- rast(fr))
 
 ## ----eval=terra_available-----------------------------------------------------
@@ -76,7 +76,7 @@ print(r_stars)
 (r_stars_rt <- rast(r_stars))
 
 ## ----eval=(terra_available && stars_available)--------------------------------
-(r_stars_p <- st_as_stars(r, proxy=TRUE))
+(r_stars_p <- st_as_stars(r, proxy = TRUE))
 
 ## ----eval=(terra_available && stars_available)--------------------------------
 (r_stars_p_rt <- rast(r_stars_p))
