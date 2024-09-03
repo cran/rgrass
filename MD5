@@ -1,4 +1,4 @@
-c80ad8d634d45fdd41bd85a591be43f9 *DESCRIPTION
+133ed86480f17d2bca949859183a8aa1 *DESCRIPTION
 0574305f958bbe8fd9d530d87d491dfd *NAMESPACE
 fb52328a049da4a856420813e122065c *NEWS.md
 060715b3467d426eef7bf7be543a0b41 *R/AAA.R
@@ -14,7 +14,7 @@ c0e178d6b5e90948074f79efb07810c2 *R/read_helpers.R
 bb2e08501755de25b7006dbe6353c2ec *build/vignette.rds
 05ecf34ebe6a87390195a5e6e0fa7025 *inst/doc/coerce.R
 bd29ebb753f39add4469dbb053941112 *inst/doc/coerce.Rmd
-6381a8e940832ac91714ee6bd5eb97e5 *inst/doc/coerce.html
+ef77903593b375d9e2d795de69fcf5ea *inst/doc/coerce.html
 a1a127bdf83a089eb85113d5a51574e5 *inst/doc/use.R
 05909232e016551e1225f6367471d301 *inst/doc/use.Rmd
 9bd9539bf0b91354951f339a3f2b616a *inst/doc/use.html
@@ -27,10 +27,10 @@ d39ff370709f84aef9aadf742f6215fb *man/gmeta.Rd
 4ce1670d9aa17c7703c5867dca2d9827 *man/readRAST.Rd
 d571c5a977307adc221645fd87cf6538 *man/readVECT.Rd
 e2de44d097fc87b01e99c59d01597151 *man/rgrass.Rd
-cfb6c474fce143ecca945452774af0b2 *tests/test_XML_xml2.R
-ba4805d1289e9f0c34bf237176a26e64 *tests/test_XML_xml2.Rout.save
-3529187e701e61cc1d3cc65f36491ba6 *tests/test_terra_ptr.R
-e52d90905b5c3860fa0c2e012db94927 *tests/test_terra_ptr.Rout.save
+6c5545e40b92cb9571e3e9d81119ea96 *tests/test_XML_xml2.R
+0a17872f79e777dc5376e9016f78b84f *tests/test_XML_xml2.Rout.save
+c1b773b68d61848f017a339f75f2644b *tests/test_terra_ptr.R
+1f0e906a0784aef843899e29c0244850 *tests/test_terra_ptr.Rout.save
 d9de941376decf850c0d90cafe17d5cb *vignettes/OSGeo4W_QGIS_Rgui.png
 76b0e662b61ca4690cf1879dd19c2e86 *vignettes/OSGeo4W_QGIS_navbar.png
 5c03688e7dc21da9d9f11a309aa1b835 *vignettes/OSGeo4W_QGIS_rstudio.png
