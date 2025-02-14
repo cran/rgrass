@@ -1,10 +1,5 @@
 library(testthat)
 library(terra)
-source("helper.R")
-
-# setup
-testdata <- download_nc_basic()
-gisBase <- get_gisbase()
 
 testthat::test_that("testing gmeta", {
   skip_if_not(!is.null(gisBase), "GRASS GIS not found on PATH")

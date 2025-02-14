@@ -1,6 +1,6 @@
 Package: rgrass
-Version: 0.5-1
-Date: 2025-02-02
+Version: 0.5-2
+Date: 2025-02-13
 Title: Interface Between 'GRASS' Geographical Information System and
         'R'
 Authors@R: c(
@@ -15,7 +15,7 @@ Description: An interface between the 'GRASS' geographical information system ('
 Depends: R (>= 3.5.0)
 Imports: stats, utils, methods, xml2
 Suggests: terra (>= 1.6-16), sp (>= 0.9), knitr, rmarkdown, sf, stars,
-        raster (>= 3.6-3), codetools, testthat (>= 3.0.0)
+        raster (>= 3.6-3), codetools, testthat (>= 3.0.0), withr, fs
 VignetteBuilder: knitr
 SystemRequirements: GRASS (>= 7)
 License: GPL (>= 2)
@@ -27,7 +27,7 @@ RoxygenNote: 7.3.2
 Encoding: UTF-8
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2025-02-03 02:03:42 UTC; stevenpawley
+Packaged: 2025-02-14 04:11:04 UTC; ubuntu
 Author: Roger Bivand [aut] (<https://orcid.org/0000-0003-2392-6140>),
   Sebastian Jeworutzki [ctb] (<https://orcid.org/0000-0002-2671-5253>),
   Rainer Krug [ctb] (<https://orcid.org/0000-0002-7490-0066>),
@@ -37,4 +37,4 @@ Author: Roger Bivand [aut] (<https://orcid.org/0000-0003-2392-6140>),
   Floris Vanderhaeghe [ctb] (<https://orcid.org/0000-0002-6378-6229>)
 Maintainer: Steven Pawley <dr.stevenpawley@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-02-03 20:00:02 UTC
+Date/Publication: 2025-02-14 05:50:02 UTC
