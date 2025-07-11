@@ -1,6 +1,6 @@
 Package: rgrass
-Version: 0.5-2
-Date: 2025-02-13
+Version: 0.5-3
+Date: 2025-07-09
 Title: Interface Between 'GRASS' Geographical Information System and
         'R'
 Authors@R: c(
@@ -27,14 +27,17 @@ RoxygenNote: 7.3.2
 Encoding: UTF-8
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2025-02-14 04:11:04 UTC; ubuntu
-Author: Roger Bivand [aut] (<https://orcid.org/0000-0003-2392-6140>),
-  Sebastian Jeworutzki [ctb] (<https://orcid.org/0000-0002-2671-5253>),
-  Rainer Krug [ctb] (<https://orcid.org/0000-0002-7490-0066>),
-  Robin Lovelace [ctb] (<https://orcid.org/0000-0001-5679-6536>),
-  Markus Neteler [ctb] (<https://orcid.org/0000-0003-1916-1966>),
-  Steven Pawley [cre, aut] (<https://orcid.org/0000-0002-5524-3320>),
-  Floris Vanderhaeghe [ctb] (<https://orcid.org/0000-0002-6378-6229>)
+Packaged: 2025-07-11 04:38:09 UTC; steven
+Author: Roger Bivand [aut] (ORCID: <https://orcid.org/0000-0003-2392-6140>),
+  Sebastian Jeworutzki [ctb] (ORCID:
+    <https://orcid.org/0000-0002-2671-5253>),
+  Rainer Krug [ctb] (ORCID: <https://orcid.org/0000-0002-7490-0066>),
+  Robin Lovelace [ctb] (ORCID: <https://orcid.org/0000-0001-5679-6536>),
+  Markus Neteler [ctb] (ORCID: <https://orcid.org/0000-0003-1916-1966>),
+  Steven Pawley [cre, aut] (ORCID:
+    <https://orcid.org/0000-0002-5524-3320>),
+  Floris Vanderhaeghe [ctb] (ORCID:
+    <https://orcid.org/0000-0002-6378-6229>)
 Maintainer: Steven Pawley <dr.stevenpawley@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-02-14 05:50:02 UTC
+Date/Publication: 2025-07-11 05:00:02 UTC

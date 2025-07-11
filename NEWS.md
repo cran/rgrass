@@ -1,3 +1,7 @@
+# **rgrass** version 0.5-3 (2025-07-09)
+
+- allow tests to run (or fail gracefully) when internet resources are not available for downloading the GRASS example database
+
 # **rgrass** version 0.5-2 (2025-02-13)
 
 - minor change to testsuite to ensure that temporary directory is cleaned up after tests

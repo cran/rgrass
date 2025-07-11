@@ -1557,9 +1557,9 @@ package building, some code blocks will not be displayed.</p>
 <p>On loading and attaching, <strong>terra</strong> displays its
 version:</p>
 <pre class="r"><code>library(&quot;terra&quot;)</code></pre>
-<pre><code>## terra 1.8.21</code></pre>
+<pre><code>## terra 1.8.54</code></pre>
 <pre class="r"><code>library(&quot;sf&quot;)</code></pre>
-<pre><code>## Linking to GEOS 3.12.2, GDAL 3.9.1, PROJ 9.4.1; sf_use_s2() is TRUE</code></pre>
+<pre><code>## Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE</code></pre>
 <pre class="r"><code>library(&quot;sp&quot;)</code></pre>
 <pre class="r"><code>library(&quot;stars&quot;)</code></pre>
 <pre><code>## Loading required package: abind</code></pre>
@@ -1568,7 +1568,7 @@ version:</p>
 libraries being used by <strong>terra</strong>:</p>
 <pre class="r"><code>gdal(lib = &quot;all&quot;)</code></pre>
 <pre><code>##     gdal     proj     geos 
-##  &quot;3.9.1&quot;  &quot;9.4.1&quot; &quot;3.12.2&quot;</code></pre>
+##  &quot;3.8.4&quot;  &quot;9.4.0&quot; &quot;3.12.1&quot;</code></pre>
 <p>When using CRAN binary packages built static for Windows and macOS,
 the R packages will use the same versions of the external libraries, but
 not necessarily the same versions as those against which GRASS was
@@ -1711,7 +1711,7 @@ returned, and the same class of object is needed for
 <pre class="r"><code>fr &lt;- system.file(&quot;ex/elev.tif&quot;, package = &quot;terra&quot;)
 (r &lt;- rast(fr))</code></pre>
 <pre><code>## class       : SpatRaster 
-## dimensions  : 90, 95, 1  (nrow, ncol, nlyr)
+## size        : 90, 95, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.008333333, 0.008333333  (x, y)
 ## extent      : 5.741667, 6.533333, 49.44167, 50.19167  (xmin, xmax, ymin, ymax)
 ## coord. ref. : lon/lat WGS 84 (EPSG:4326) 
@@ -1741,7 +1741,7 @@ print(r_stars)</code></pre>
 <p>which round-trips in memory.</p>
 <pre class="r"><code>(r_stars_rt &lt;- rast(r_stars))</code></pre>
 <pre><code>## class       : SpatRaster 
-## dimensions  : 90, 95, 1  (nrow, ncol, nlyr)
+## size        : 90, 95, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.008333333, 0.008333333  (x, y)
 ## extent      : 5.741667, 6.533333, 49.44167, 50.19167  (xmin, xmax, ymin, ymax)
 ## coord. ref. : lon/lat WGS 84 (EPSG:4326) 
@@ -1763,7 +1763,7 @@ print(r_stars)</code></pre>
 into memory:</p>
 <pre class="r"><code>(r_stars_p_rt &lt;- rast(r_stars_p))</code></pre>
 <pre><code>## class       : SpatRaster 
-## dimensions  : 90, 95, 1  (nrow, ncol, nlyr)
+## size        : 90, 95, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.008333333, 0.008333333  (x, y)
 ## extent      : 5.741667, 6.533333, 49.44167, 50.19167  (xmin, xmax, ymin, ymax)
 ## coord. ref. : lon/lat WGS 84 (EPSG:4326) 
@@ -1813,7 +1813,7 @@ default:</p>
 round-tripped:</p>
 <pre class="r"><code>(r_RL_rt &lt;- rast(r_RL))</code></pre>
 <pre><code>## class       : SpatRaster 
-## dimensions  : 90, 95, 1  (nrow, ncol, nlyr)
+## size        : 90, 95, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.008333333, 0.008333333  (x, y)
 ## extent      : 5.741667, 6.533333, 49.44167, 50.19167  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
@@ -1900,7 +1900,7 @@ forefronts the Proj.4 string CRS representation:</p>
 ##                 ID[&quot;EPSG&quot;,9122]]]]</code></pre>
 <pre class="r"><code>(r_sp_rt &lt;- rast(r_sp_RL_rt))</code></pre>
 <pre><code>## class       : SpatRaster 
-## dimensions  : 90, 95, 1  (nrow, ncol, nlyr)
+## size        : 90, 95, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.008333333, 0.008333333  (x, y)
 ## extent      : 5.741667, 6.533333, 49.44167, 50.19167  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=longlat +datum=WGS84 +no_defs 
@@ -1964,7 +1964,6 @@ summary(r_sp_stars)</code></pre>
 ##         MEMBER[&quot;World Geodetic System 1984 (G1674)&quot;],
 ##         MEMBER[&quot;World Geodetic System 1984 (G1762)&quot;],
 ##         MEMBER[&quot;World Geodetic System 1984 (G2139)&quot;],
-##         MEMBER[&quot;World Geodetic System 1984 (G2296)&quot;],
 ##         ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
 ##             LENGTHUNIT[&quot;metre&quot;,1]],
 ##         ENSEMBLEACCURACY[2.0]],
@@ -1985,7 +1984,7 @@ summary(r_sp_stars)</code></pre>
 <p>and can be round-tripped:</p>
 <pre class="r"><code>(r_sp_stars_rt &lt;- rast(st_as_stars(r_sp_stars)))</code></pre>
 <pre><code>## class       : SpatRaster 
-## dimensions  : 90, 95, 1  (nrow, ncol, nlyr)
+## size        : 90, 95, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.008333333, 0.008333333  (x, y)
 ## extent      : 5.741667, 6.533333, 49.44167, 50.19167  (xmin, xmax, ymin, ymax)
 ## coord. ref. : lon/lat WGS 84 (EPSG:4326) 
